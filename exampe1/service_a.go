@@ -11,7 +11,7 @@ var counter = 0
 
 func handle(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	lt, err := net.LookupIP("www.baidu.com")
+	lt, err := net.LookupIP("service-b")
 	if err == nil {
 		index := counter % (len(lt))
 		counter = counter + 1

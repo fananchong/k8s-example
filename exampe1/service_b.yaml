@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: service-b
+  namespace: k8s-example1
+  labels:
+    app: service-b
+spec:
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      hostNetwork: true
+      containers:
+      - name: service-b
+        image: fananchong/k8s-example1
+        command: [ "/service_b" ]
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b
+  namespace: k8s-example1
+  labels:
+    app: service-b
+spec:
+  ports:
+    - port: 3456
+  clusterIP: None
+  selector:
+    app: service-b
