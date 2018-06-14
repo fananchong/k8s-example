@@ -4,23 +4,18 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"net/http"
 	"time"
 )
 
 func main() {
-
-	http.NewRequest("get", "localhost")
-
-	addr, _ := net.ResolveTCPAddr("tcp4")
-	conn, err := net.DialTCP("tcp4", nil, addr)
+	conn, err := net.Dial("tcp", "127.0.0.1:3456")
 	if err != nil {
 		panic(err)
 	}
 
 	fmt.Println("connect to ", conn.RemoteAddr().String())
 
-	conn.Write(fmt.Sprintf("hello"))
+	conn.Write([]byte("hello"))
 	for count := 0; true; count++ {
 		var b [1024]byte
 		ln, err := io.ReadAtLeast(conn, b[:], 1)
@@ -28,8 +23,8 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println(string(ln))
-		conn.Write(fmt.Sprintf("world %d", count))
+		fmt.Println(string(b[:ln]))
+		conn.Write([]byte(fmt.Sprintf("world %d", count)))
 		time.Sleep(2 * time.Second)
 	}
 }

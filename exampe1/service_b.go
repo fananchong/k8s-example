@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	addr, _ := net.ResolveTCPAddr("tcp", ":3456")
+	addr, _ := net.ResolveTCPAddr("tcp", "0.0.0.0:3456")
 	lis, err := net.ListenTCP("tcp", addr)
 	if err != nil {
 		panic(err)
