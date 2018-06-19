@@ -4,15 +4,13 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
-	"net"
 	"net/http"
 	"time"
 )
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	lt, err := net.LookupIP("service-b")
-	if err == nil {
+	lt := GetEndpoints("k8s-example2", "service-b")
+	if lt != nil {
 		index := rand.Intn(len(lt))
 		fmt.Fprintf(w, fmt.Sprintf("%v", lt[index]))
 	} else {
@@ -28,4 +26,3 @@ func main() {
 		log.Fatal("ERROR: ", err)
 	}
 }
-
