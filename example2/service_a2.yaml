@@ -1,38 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-b
+  name: service-a
   namespace: k8s-example2
   labels:
-    app: service-b
+    app: service-a
 spec:
   selector:
     matchLabels:
-      app: service-b
-  replicas: 4
+      app: service-a
+  replicas: 3
   template:
     metadata:
       labels:
-        app: service-b
+        app: service-a
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
-      - name: service-b
+      - name: service-a
         image: fananchong/k8s-example2
-        command: [ "/service_b" ]
+        command: [ "/service_a2" ]
+        ports:
+        - containerPort: 8000
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-b
+  name: service-a
   namespace: k8s-example2
   labels:
-    app: service-b
+    app: service-a
 spec:
+  type: NodePort
   ports:
-    - port: 3456
-  clusterIP: None
+    - port: 8000
+      nodePort: 30080
   selector:
-    app: service-b
+    app: service-a
