@@ -1,3 +1,30 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: service-a
+  name: service-a
+  namespace: k8s-example2
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: service-a
+  namespace: k8s-example2
+  labels:
+    app: service-a
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: service-a
+    namespace: k8s-example2
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,6 +42,7 @@ spec:
       labels:
         app: service-a
     spec:
+      serviceAccountName: service-a
       containers:
       - name: service-a
         image: fananchong/k8s-example2
@@ -37,3 +65,4 @@ spec:
       nodePort: 30080
   selector:
     app: service-a
+
