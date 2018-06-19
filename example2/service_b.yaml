@@ -1,11 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: service-b
   namespace: k8s-example2
   labels:
     app: service-b
 spec:
+  serviceName: service-b
   selector:
     matchLabels:
       app: service-b

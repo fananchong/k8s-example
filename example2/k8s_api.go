@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/ericchiang/k8s"
@@ -29,6 +30,10 @@ func GetEndpoints(namespace, service string) []string {
 	}
 
 	for _, endpoint := range endpoints.Subsets {
+
+		fmt.Println("address:", endpoint.Addresses)
+		fmt.Println("ports:", endpoint.Ports)
+
 		for _, address := range endpoint.Addresses {
 			ips = append(ips, *address.Ip)
 		}
@@ -36,3 +41,4 @@ func GetEndpoints(namespace, service string) []string {
 
 	return ips
 }
+
