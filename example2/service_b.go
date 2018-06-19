@@ -6,11 +6,14 @@ import (
 )
 
 func main() {
-	addr, _ := net.ResolveTCPAddr("tcp", "0.0.0.0:3456")
+	port := getVaildPort()
+	addr, _ := net.ResolveTCPAddr("tcp", fmt.Sprintf("0.0.0.0:%d", port))
 	lis, err := net.ListenTCP("tcp", addr)
 	if err != nil {
 		panic(err)
 	}
+
+	fmt.Println("start listen:", port)
 
 	for {
 		conn, err := lis.AcceptTCP()
@@ -33,4 +36,26 @@ func main() {
 			}
 		}()
 	}
+}
+
+func getVaildPort() int {
+	port := 10000
+	for {
+		port = port + 1
+		address := fmt.Sprintf(":%d", port)
+		tcpAddr, err := net.ResolveTCPAddr("tcp4", address)
+		if err != nil {
+			continue
+		}
+		listener, err := net.ListenTCP("tcp", tcpAddr)
+		if err != nil {
+			if listener != nil {
+				listener.Close()
+			}
+			continue
+		}
+		listener.Close()
+		return port
+	}
+	return 0
 }
