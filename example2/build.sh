@@ -12,3 +12,9 @@ docker run -it --rm -e GOBIN=/go/bin/ -v "$PWD"/bin:/go/bin/ -v "$PWD"/../:/go/s
 docker build -t k8s-example2 .
 
 docker tag k8s-example2:latest fananchong/k8s-example2:latest
+
+docker push fananchong/k8s-example2:latest
+
+kubectl delete -f ./service_b.yaml
+kubectl create -f ./service_b.yaml
+
