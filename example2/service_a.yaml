@@ -46,7 +46,7 @@ spec:
       containers:
       - name: service-a
         image: fananchong/k8s-example2
-        command: [ "/service_a2" ]
+        command: [ "/service_a" ]
         ports:
         - containerPort: 8000
 

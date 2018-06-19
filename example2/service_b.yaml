@@ -20,7 +20,7 @@ spec:
       containers:
       - name: service-b
         image: fananchong/k8s-example2
-        command: [ "/service_b2" ]
+        command: [ "/service_b" ]
 
 ---
 apiVersion: v1
