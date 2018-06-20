@@ -9,7 +9,7 @@
 ---------------| ------------------------------------
 build.sh       | 构建 服务A 服务B 的docker镜像
 Dockerfile     | 服务A 服务B 的Dockerfile
-k8s_api.go     | Kubernetes Custom Seed Provider. 辅助服务发现
+k8s_api.go     | 辅助服务发现
 service_a.go   | 服务A 实现
 service_a.yaml | 服务A k8s编排脚本
 service_b.go   | 服务B 实现
