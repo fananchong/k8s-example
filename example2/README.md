@@ -112,8 +112,8 @@ spec:
   - 服务B的服务发现使用 Headless Service 类型。这样，其他k8s服务就可以直接 nds解析，获取 服务B 地址列表。
 
   - Port根据 base + Pod有唯一ID，使得服务B的每个容器均有唯一的对外Port。且其他服务可根据Pod名直接知道它的Port号
-
-	- port base 由服务B Service中ports提供，支持导出多个基端口
+  
+  - port base 由服务B Service中ports提供，支持导出多个基端口
 
 ## window单机调试
 
