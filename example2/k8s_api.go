@@ -1,3 +1,5 @@
+// +build !debug
+
 package main
 
 import (
@@ -95,4 +97,3 @@ func getIndex(name string) int {
 	}
 	return id
 }
-
