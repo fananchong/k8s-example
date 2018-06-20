@@ -43,8 +43,8 @@ func GetEndpoints(namespace, service string) []*Endpoint {
 		fmt.Println("address:", endpoint.Addresses)
 		fmt.Println("ports:", endpoint.Ports)
 
-		item := NewEndpoint()
 		for _, address := range endpoint.Addresses {
+			item := NewEndpoint()
 			item.IP = *address.Ip
 			for _, port := range endpoint.Ports {
 				item.Ports[*port.Name] = int(*port.Port) + getIndex(*address.Hostname)

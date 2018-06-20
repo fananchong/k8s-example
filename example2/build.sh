@@ -13,6 +13,9 @@ docker build -t k8s-example2 .
 
 docker tag k8s-example2:latest fananchong/k8s-example2:latest
 
+
+# run for test
+
 docker push fananchong/k8s-example2:latest
 
 kubectl apply -f ./namespace.yaml
