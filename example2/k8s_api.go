@@ -12,19 +12,25 @@ import (
 	corev1 "github.com/ericchiang/k8s/apis/core/v1"
 )
 
-type endpoints struct {
-	IPs []string `json:"ips"`
+type Endpoint struct {
+	IP    string
+	Ports map[string]int
 }
 
-func GetEndpoints(namespace, service string, base int) []string {
+func NewEndpoint() *Endpoint {
+	return &Endpoint{
+		Ports: make(map[string]int),
+	}
+}
+
+func GetEndpoints(namespace, service string) []*Endpoint {
 	client, err := k8s.NewInClusterClient()
 	if err != nil {
 		log.Printf("unexpected error opening a connection against API server: %v\n", err)
 		return nil
 	}
 
-	ips := make([]string, 0)
-
+	var ips []*Endpoint
 	var endpoints corev1.Endpoints
 	err = client.Get(context.Background(), namespace, service, &endpoints)
 	if err != nil {
@@ -35,18 +41,47 @@ func GetEndpoints(namespace, service string, base int) []string {
 	for _, endpoint := range endpoints.Subsets {
 
 		fmt.Println("address:", endpoint.Addresses)
+		fmt.Println("ports:", endpoint.Ports)
 
+		item := NewEndpoint()
 		for _, address := range endpoint.Addresses {
-			port := base + getIndex(*address.Hostname)
-			ips = append(ips, fmt.Sprintf("%s:%d", *address.Ip, port))
+			item.IP = *address.Ip
+			for _, port := range endpoint.Ports {
+				item.Ports[*port.Name] = int(*port.Port) + getIndex(*address.Hostname)
+			}
+			ips = append(ips, item)
 		}
 	}
 
 	return ips
 }
 
-func GetVaildPort(base int) int {
-	return base + getIndex(os.Getenv("POD_NAME"))
+func GetVaildPort(namespace, service string) map[string]int {
+	client, err := k8s.NewInClusterClient()
+	if err != nil {
+		log.Printf("unexpected error opening a connection against API server: %v\n", err)
+		return nil
+	}
+	var endpoints corev1.Endpoints
+	err = client.Get(context.Background(), namespace, service, &endpoints)
+	if err != nil {
+		log.Printf("unexpected error obtaining information about service endpoints: %v\n", err)
+		return nil
+	}
+
+	ports := make(map[string]int)
+
+	for _, endpoint := range endpoints.Subsets {
+
+		fmt.Println("ports:", endpoint.Ports)
+
+		for _, port := range endpoint.Ports {
+			ports[*port.Name] = int(*port.Port) + getIndex(os.Getenv("POD_NAME"))
+		}
+		break
+	}
+
+	return ports
 }
 
 func getIndex(name string) int {

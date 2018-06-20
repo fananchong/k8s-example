@@ -9,7 +9,7 @@ import (
 )
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	lt := GetEndpoints("k8s-example2", "service-b", 3000)
+	lt := GetEndpoints("k8s-example2", "service-b")
 	if lt != nil {
 		index := rand.Intn(len(lt))
 		fmt.Fprintf(w, fmt.Sprintf("%v", lt[index]))
@@ -26,3 +26,4 @@ func main() {
 		log.Fatal("ERROR: ", err)
 	}
 }
+

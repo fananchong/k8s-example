@@ -6,7 +6,12 @@ import (
 )
 
 func main() {
-	port := GetVaildPort(3000)
+	ports := GetVaildPort("k8s-example2", "service-b")
+	if ports == nil {
+		panic("")
+	}
+	fmt.Println("ports:", ports)
+	port := ports[""]
 	addr, _ := net.ResolveTCPAddr("tcp", fmt.Sprintf("0.0.0.0:%d", port))
 	lis, err := net.ListenTCP("tcp", addr)
 	if err != nil {

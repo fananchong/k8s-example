@@ -15,7 +15,10 @@ docker tag k8s-example2:latest fananchong/k8s-example2:latest
 
 docker push fananchong/k8s-example2:latest
 
-kubectl delete -f ./service_b.yaml
-kubectl create -f ./service_b.yaml
+kubectl apply -f ./namespace.yaml
+kubectl apply -f ./service_account.yaml
 kubectl delete -f ./service_a.yaml
 kubectl create -f ./service_a.yaml
+kubectl delete -f ./service_b.yaml
+kubectl create -f ./service_b.yaml
+
