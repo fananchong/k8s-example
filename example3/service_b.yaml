@@ -7,7 +7,7 @@ metadata:
     app: service-b
 spec:
   ports:
-    - port: 3000
+    - port: 3300
       name: ""
   clusterIP: None
   selector:

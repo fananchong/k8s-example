@@ -4,7 +4,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -43,8 +42,8 @@ func GetEndpoints(namespace, service string) []*Endpoint {
 
 	for _, endpoint := range endpoints.Subsets {
 
-		fmt.Println("address:", endpoint.Addresses)
-		fmt.Println("ports:", endpoint.Ports)
+		//fmt.Println("address:", endpoint.Addresses)
+		//fmt.Println("ports:", endpoint.Ports)
 
 		for _, address := range endpoint.Addresses {
 			index := getIndex(*address.Hostname)
@@ -78,7 +77,7 @@ func GetVaildPort(namespace, service string) map[string]int {
 
 	for _, endpoint := range endpoints.Subsets {
 
-		fmt.Println("ports:", endpoint.Ports)
+		//fmt.Println("ports:", endpoint.Ports)
 
 		for _, port := range endpoint.Ports {
 			ports[*port.Name] = int(*port.Port) + getIndex(os.Getenv("POD_NAME"))
@@ -100,3 +99,4 @@ func getIndex(name string) int {
 	}
 	return id
 }
+
