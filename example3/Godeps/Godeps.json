@@ -1,0 +1,96 @@
+{
+	"ImportPath": "github.com/fananchong/k8s-example/example3",
+	"GoVersion": "go1.10",
+	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/ericchiang/k8s",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/apis/apiextensions/v1beta1",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/apis/core/v1",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/apis/meta/v1",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/apis/resource",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/runtime",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/runtime/schema",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/util/intstr",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/ericchiang/k8s/watch/versioned",
+			"Comment": "v1.1.0-5-gc9d9831",
+			"Rev": "c9d9831128d3528f37157d7c96765033ed0a9b3b"
+		},
+		{
+			"ImportPath": "github.com/golang/protobuf/proto",
+			"Comment": "v1.1.0-13-g9eb2c01",
+			"Rev": "9eb2c01ac278a5d89ce4b2be68fe4500955d8179"
+		},
+		{
+			"ImportPath": "golang.org/x/net/http/httpguts",
+			"Rev": "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
+		},
+		{
+			"ImportPath": "golang.org/x/net/http2",
+			"Rev": "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
+		},
+		{
+			"ImportPath": "golang.org/x/net/http2/hpack",
+			"Rev": "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
+		},
+		{
+			"ImportPath": "golang.org/x/net/idna",
+			"Rev": "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
+		},
+		{
+			"ImportPath": "golang.org/x/text/secure/bidirule",
+			"Comment": "v0.3.0-50-g5cec4b5",
+			"Rev": "5cec4b58c438bd98288aeb248bab2c1840713d21"
+		},
+		{
+			"ImportPath": "golang.org/x/text/transform",
+			"Comment": "v0.3.0-50-g5cec4b5",
+			"Rev": "5cec4b58c438bd98288aeb248bab2c1840713d21"
+		},
+		{
+			"ImportPath": "golang.org/x/text/unicode/bidi",
+			"Comment": "v0.3.0-50-g5cec4b5",
+			"Rev": "5cec4b58c438bd98288aeb248bab2c1840713d21"
+		},
+		{
+			"ImportPath": "golang.org/x/text/unicode/norm",
+			"Comment": "v0.3.0-50-g5cec4b5",
+			"Rev": "5cec4b58c438bd98288aeb248bab2c1840713d21"
+		}
+	]
+}

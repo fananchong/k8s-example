@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b
+  namespace: k8s-example2
+  labels:
+    app: service-b
+spec:
+  ports:
+    - port: 3000
+      name: ""
+  clusterIP: None
+  selector:
+    app: service-b
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: service-b
+  namespace: k8s-example2
+  labels:
+    app: service-b
+spec:
+  serviceName: service-b
+  selector:
+    matchLabels:
+      app: service-b
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      serviceAccountName: sa
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: service-b
+        image: fananchong/k8s-example2
+        imagePullPolicy: Always
+        command: [ "/service_b" ]
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+
