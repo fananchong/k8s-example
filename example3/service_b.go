@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	ports := GetVaildPort("k8s-example2", "service-b")
+	ports := GetVaildPort("k8s-example3", "service-b")
 	if ports == nil {
 		panic("")
 	}
@@ -42,4 +42,3 @@ func main() {
 		}()
 	}
 }
-

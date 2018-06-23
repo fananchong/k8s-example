@@ -15,6 +15,7 @@ import (
 )
 
 type Endpoint struct {
+	Index int
 	IP    string
 	Ports map[string]int
 }
@@ -46,10 +47,12 @@ func GetEndpoints(namespace, service string) []*Endpoint {
 		fmt.Println("ports:", endpoint.Ports)
 
 		for _, address := range endpoint.Addresses {
+			index := getIndex(*address.Hostname)
 			item := NewEndpoint()
 			item.IP = *address.Ip
+			item.Index = index
 			for _, port := range endpoint.Ports {
-				item.Ports[*port.Name] = int(*port.Port) + getIndex(*address.Hostname)
+				item.Ports[*port.Name] = int(*port.Port) + index
 			}
 			ips = append(ips, item)
 		}

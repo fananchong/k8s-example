@@ -3,6 +3,7 @@
 package main
 
 type Endpoint struct {
+	Index int
 	IP    string
 	Ports map[string]int
 }
@@ -18,6 +19,7 @@ func GetEndpoints(namespace, service string) []*Endpoint {
 	// 仅举例，可以从配置文件中读取
 
 	item := NewEndpoint()
+	item.Index = 0
 	item.IP = "localhost"
 	item.Ports[""] = 3000
 	var ips []*Endpoint
