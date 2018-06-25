@@ -32,7 +32,7 @@ spec:
       labels:
         app: service-b
     spec:
-      serviceAccountName: sa
+      serviceAccountName: sa3
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       containers:

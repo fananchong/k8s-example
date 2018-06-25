@@ -31,7 +31,7 @@ spec:
       labels:
         app: service-a
     spec:
-      serviceAccountName: sa
+      serviceAccountName: sa3
       containers:
       - name: service-a
         image: fananchong/k8s-example3
