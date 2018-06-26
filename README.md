@@ -7,7 +7,7 @@
 
 `服务B`一台机器只允许开1个容器
 
-参见 [example1/README.md](example1/README.md)
+详细介绍参见 [example1/README.md](example1/README.md)
 
 
 ## 例子2
@@ -16,11 +16,18 @@
 
 `服务B`一台机器不限制仅开1个容器
 
-参见 [example2/README.md](example2/README.md)
+详细介绍参见 [example2/README.md](example2/README.md)
 
 
 ## 例子3
 
 `服务A` 通过k8s服务发现，获取 `服务B` 列表，并与 `服务B` 互连
 
-参见 [example3/README.md](example3/README.md)
+详细介绍参见 [example3/README.md](example3/README.md)
+
+
+## 例子4
+
+通过 k8s helm 部署 redis 主从的例子
+
+详细介绍参见 [example4/README.md](example4/README.md)
