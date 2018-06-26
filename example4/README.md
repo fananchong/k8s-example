@@ -11,7 +11,6 @@
 ------------------------ | --------------------
 NOTES                    | 部署成功后，本文介绍如何使用redis
 pv.yaml                  | 云存储配置。这里测试方便使用的hostpath。（注意：hostpath仅用于测试方便用）
-Dockerfile               | 服务A 服务B 的Dockerfile
 setup.sh                 | 安装脚本
 values-production.yaml   | stable/redis 的配置参数
 
@@ -20,10 +19,10 @@ values-production.yaml   | stable/redis 的配置参数
 
 1. 执行命令：
 
-```shell
-./setup.sh
-```
+    ```shell
+    ./setup.sh
+    ```
 
 2. 如何使用k8s redis
 
-参考: [NOTES](NOTES)
+    参考: [NOTES](NOTES)
