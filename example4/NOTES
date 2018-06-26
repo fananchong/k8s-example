@@ -1,0 +1,28 @@
+NOTES:
+** Please be patient while the chart is being deployed **
+Redis can be accessed via port 6379 on the following DNS names from within your cluster:
+
+my-redis-master.my-redis.svc.cluster.local for read/write operations
+my-redis-slave.my-redis.svc.cluster.local for read-only operations
+
+
+To get your password run:
+
+    export REDIS_PASSWORD=$(kubectl get secret --namespace my-redis my-redis -o jsonpath="{.data.redis-password}" | base64 --decode)
+
+To connect to your Redis server:
+
+1. Run a Redis pod that you can use as a client:
+
+   kubectl run --namespace my-redis my-redis-client --rm --tty -i \
+    --env REDIS_PASSWORD=$REDIS_PASSWORD \--labels="redis-client=true" \
+   --image docker.io/bitnami/redis:4.0.10 -- bash
+
+2. Connect using the Redis CLI:
+   redis-cli -h my-redis-master -a $REDIS_PASSWORD
+   redis-cli -h my-redis-slave -a $REDIS_PASSWORD
+
+
+Note: Since NetworkPolicy is enabled, only pods with label
+my-redis-client=true"
+will be able to connect to redis.
